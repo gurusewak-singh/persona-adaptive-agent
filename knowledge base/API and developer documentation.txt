@@ -1,0 +1,28 @@
+Title: API Integration Guide
+
+1. API Base URL
+https://api.adsparkx.com/v1/
+
+2. Authentication
+All API requests require:
+Authorization: Bearer <API_KEY>
+
+3. Rate Limits
+- Starter: 100 requests/minute
+- Pro: 500 requests/minute
+- Enterprise: Custom limits
+
+4. Common Error Codes
+400 - Bad Request
+401 - Unauthorized
+403 - Forbidden
+429 - Rate Limit Exceeded
+500 - Internal Server Error
+
+5. Webhooks
+Webhook payload includes:
+{
+  "event_type": "campaign.updated",
+  "campaign_id": "string",
+  "timestamp": "ISO format"
+}

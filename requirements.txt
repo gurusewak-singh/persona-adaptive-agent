@@ -1,0 +1,9 @@
+fastapi
+google-genai
+google-generativeai
+python-dotenv
+chromadb
+psycopg2
+requests
+numpy
+streamlit

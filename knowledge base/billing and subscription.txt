@@ -1,0 +1,24 @@
+Title: Billing and Subscription Management
+
+1. Subscription Plans
+- Starter Plan: Basic campaign management
+- Pro Plan: Advanced analytics & automation
+- Enterprise Plan: Dedicated support & SLA
+
+2. Billing Cycle
+Subscriptions are billed monthly or annually.
+Invoices are generated on the 1st of each billing cycle.
+
+3. Duplicate Charges
+If a user is charged twice:
+- Verify invoice history
+- Confirm whether add-on services were purchased
+- Refund requests are processed within 5-7 business days
+
+4. Payment Failures
+Common reasons:
+- Insufficient funds
+- Expired card
+- Payment gateway timeout
+
+Users can update payment methods under Billing Settings.

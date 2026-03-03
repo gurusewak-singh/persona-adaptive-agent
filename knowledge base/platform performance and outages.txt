@@ -1,0 +1,20 @@
+Title: System Performance & Incident Policy
+
+1. Uptime SLA
+Enterprise customers receive 99.9% uptime guarantee.
+
+2. Incident Classification
+- Low: Minor UI glitch
+- Medium: Feature temporarily unavailable
+- High: Core system outage
+- Critical: Complete service disruption
+
+3. Resolution Time Targets
+Low: 48 hours
+Medium: 24 hours
+High: 8 hours
+Critical: 2 hours
+
+4. Status Updates
+Users can check system status at:
+status.adsparkx.com

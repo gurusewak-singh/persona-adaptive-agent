@@ -1,0 +1,24 @@
+Title: Account Access & Authentication Guide
+
+1. Password Reset
+Users can reset their password by clicking "Forgot Password" on the login page. 
+A reset link is sent to the registered email address and expires in 15 minutes.
+
+If the reset email is not received:
+- Check spam folder
+- Ensure correct email address was entered
+- Verify corporate firewall rules
+
+2. Multi-Factor Authentication (MFA)
+MFA can be enabled from Account Settings > Security.
+Supported methods:
+- Email OTP
+- Authenticator App (Google Authenticator compatible)
+
+3. Login Failures
+Common causes:
+- Incorrect credentials
+- Expired session token
+- Account temporarily locked after 5 failed attempts
+
+Accounts auto-unlock after 30 minutes.

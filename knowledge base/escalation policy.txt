@@ -1,0 +1,20 @@
+Title: Support Escalation Policy
+
+Escalation is required when:
+- User expresses legal threat
+- Sentiment score < -0.7
+- Repeated issue reported more than 3 times
+- Enterprise customer reports system outage
+
+Escalation Process:
+1. Generate issue summary
+2. Attach conversation transcript
+3. Include detected persona
+4. Include sentiment trend
+5. Notify Tier-2 Support Team
+
+Priority Levels:
+P1 - Critical Business Impact
+P2 - Major Feature Impact
+P3 - Minor Issue
+P4 - Informational Request

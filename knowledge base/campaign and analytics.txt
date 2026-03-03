@@ -1,0 +1,19 @@
+Title: Campaign & Analytics Overview
+
+1. Campaign Setup
+Users can create campaigns under Campaign Manager.
+Required fields:
+- Budget
+- Target audience
+- Duration
+
+2. Analytics Dashboard
+Metrics available:
+- CTR
+- Conversion Rate
+- Impressions
+- Cost per Acquisition
+
+3. Data Refresh Frequency
+Analytics data refreshes every 15 minutes for Pro & Enterprise plans.
+Starter plan refreshes every 2 hours.
