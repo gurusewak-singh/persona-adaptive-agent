@@ -1,14 +1,13 @@
 import streamlit as st
 import requests
-import random
-
+from uuid import uuid4
 API_BASE = "http://127.0.0.1:8000"
 
-st.set_page_config(page_title="Adsparkx Support Chat")
-st.title("Adsparkx Media Customer Support")
+st.set_page_config(page_title="Persona Adaptive Customer Support Chat")
+st.title("Persona Adaptive Customer Support")
 
 if "session_id" not in st.session_state:
-    st.session_state.session_id = random.randint(100000, 999999)
+    st.session_state.session_id = uuid4()
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -16,7 +15,7 @@ with st.sidebar:
     st.header("Session Info")
     st.write(f"**Session ID:** {st.session_state.session_id}")
     if st.button("New Session"):
-        st.session_state.session_id = random.randint(100000, 999999)
+        st.session_state.session_id = uuid4()
         st.session_state.messages = []
         st.rerun()
 
@@ -66,4 +65,3 @@ if user_input := st.chat_input("Type your message..."):
                 st.error("Cannot reach the backend. Make sure FastAPI is running on port 8000.")
             except Exception as e:
                 st.error(f"Error: {e}")
-

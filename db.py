@@ -45,6 +45,7 @@ def embed_text(text):
   embedding_np = np.array(embedding_obj.values)
   normalized_embedding = embedding_np / np.linalg.norm(embedding_np)
   return normalized_embedding.tolist()
+
 def create_collection():
   collection = db_client.create_collection(name=os.environ["CHROMADB_COLLECTION_NAME"], embedding_function=EmbeddingFunction())
 # create_collection() 

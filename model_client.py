@@ -7,13 +7,19 @@ genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
 model = genai.GenerativeModel("gemini-3-flash-preview")
 
-def generate_chat_response(prompt):
-  response = model.generate_content(prompt).text
+async def generate_chat_response(prompt):
+  response = (await model.generate_content_async(prompt)).text
   print(response)
   return response
 
-def get_customer_sentiment(prompt):
-  response = model.generate_content(prompt).text
+def generate_chat_response_stream(prompt):
+  response = model.generate_content(prompt, stream=True)
+  for chunk in response:
+    if chunk.text:
+      yield chunk.text
+
+async def get_customer_sentiment(prompt):
+  response = (await model.generate_content_async(prompt)).text
   print(response)
   return response
 

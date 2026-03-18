@@ -1,4 +1,4 @@
-# Adsparkx Media - AI Customer Support Chatbot
+# Persona Adaptive Customer Support Agent
 
 An intelligent customer support system that classifies users by persona, tailors responses accordingly, and escalates critical issues to human agents — all powered by Google Gemini and a RAG pipeline built on ChromaDB.
 
@@ -6,7 +6,7 @@ An intelligent customer support system that classifies users by persona, tailors
 
 ## What This Project Does
 
-This is a full-stack AI chatbot for Adsparkx Media's customer support. When a customer sends a message:
+This is a full-stack AI chatbot for Persona Adaptive Customer Support. When a customer sends a message:
 
 1. The system first figures out **who** the customer is (frustrated user? technical expert? business executive?) using sentiment analysis.
 2. Based on that persona, it picks a **tone-appropriate prompt** — empathetic for frustrated users, precise for technical folks, concise for executives.
