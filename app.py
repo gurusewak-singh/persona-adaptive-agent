@@ -7,7 +7,7 @@ st.set_page_config(page_title="Persona Adaptive Customer Support Chat")
 st.title("Persona Adaptive Customer Support")
 
 if "session_id" not in st.session_state:
-    st.session_state.session_id = uuid4()
+    st.session_state.session_id = str(uuid4())
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -15,7 +15,7 @@ with st.sidebar:
     st.header("Session Info")
     st.write(f"**Session ID:** {st.session_state.session_id}")
     if st.button("New Session"):
-        st.session_state.session_id = uuid4()
+        st.session_state.session_id = str(uuid4())
         st.session_state.messages = []
         st.rerun()
 
@@ -34,9 +34,9 @@ if user_input := st.chat_input("Type your message..."):
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             try:
-                resp = requests.get(
-                    f"{API_BASE}/chat/{st.session_state.session_id}",
-                    params={"query": user_input},
+                resp = requests.post(
+                    f"{API_BASE}/chat",
+                    json={"session_id": st.session_state.session_id, "query": user_input},
                     timeout=60,
                 )
                 resp.raise_for_status()

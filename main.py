@@ -1,6 +1,7 @@
 import asyncio
 import json
 import re
+from pydantic import BaseModel
 from fastapi import FastAPI
 from model_client import generate_chat_response, get_customer_sentiment, generate_chat_response_stream
 from prompts import sentiment_prompt, prompts_map, default_prompt
@@ -8,6 +9,10 @@ from db import get_context, get_conversation_history, save_conversation_history
 
 app = FastAPI()
 
+
+class ChatRequest(BaseModel):
+    session_id: str
+    query: str
 
 def parse_json_block(raw_text: str):
     if not raw_text:
@@ -29,14 +34,14 @@ def home():
     return {"message": "Server running!"}
 
 
-@app.get("/chat/{session_id}")
-async def chat(session_id: int, query: str):
-    customer_sentiment_prompt = sentiment_prompt.format(customer_message=query)
+@app.post("/chat")
+async def chat(request: ChatRequest):
+    customer_sentiment_prompt = sentiment_prompt.format(customer_message=request.query)
     
     sentiment_raw, conversation_context, conversation_history = await asyncio.gather(
         get_customer_sentiment(customer_sentiment_prompt),
-        asyncio.to_thread(get_context, query),
-        asyncio.to_thread(get_conversation_history, session_id),
+        asyncio.to_thread(get_context, request.query),
+        asyncio.to_thread(get_conversation_history, request.session_id),
     )
     
     sentiment = parse_json_block(sentiment_raw) or {}
@@ -45,9 +50,9 @@ async def chat(session_id: int, query: str):
     score = sentiment.get("sentiment_score", 0)
 
     save_conversation_history(
-        session_id,
+        request.session_id,
         role="customer",
-        message=query,
+        message=request.query,
         sentiment_score=score,
         escalation=False,
     )
@@ -56,7 +61,7 @@ async def chat(session_id: int, query: str):
 
     prompt = prompt_template.format(
         conversation=conversation_history,
-        customer_message=query,
+        customer_message=request.query,
         context=conversation_context,
     )
     
@@ -68,7 +73,7 @@ async def chat(session_id: int, query: str):
     is_escalation_agent = str(response_json.get("requires_escalation", "false")).lower() == "true"
 
     save_conversation_history(
-        session_id,
+        request.session_id,
         role="agent",
         message=agent_message,
         sentiment_score=severity_score,
